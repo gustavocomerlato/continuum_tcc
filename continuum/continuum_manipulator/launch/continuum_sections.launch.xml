@@ -1,0 +1,14 @@
+<launch>
+<node name="continuum_section_1" pkg="continuum_manipulator" exec="continuum_section"
+	args="-p $(find-pkg-share continuum_description)/config/continuum_section_1.yaml continuum_section_1">
+	<param from="$(find-pkg-share continuum_description)/config/continuum_section_1.yaml"/>
+</node>
+<node name="continuum_section_2" pkg="continuum_manipulator" exec="continuum_section"
+	args="-p $(find-pkg-share continuum_description)/config/continuum_section_2.yaml continuum_section_2">
+	<param from="$(find-pkg-share continuum_description)/config/continuum_section_2.yaml"/>
+</node>
+<node name="continuum_section_3" pkg="continuum_manipulator" exec="continuum_section"
+	args="-p $(find-pkg-share continuum_description)/config/continuum_section_3.yaml continuum_section_3">
+	<param from="$(find-pkg-share continuum_description)/config/continuum_section_3.yaml"/>
+</node>
+</launch>

@@ -1,0 +1,32 @@
+<!--
+  eng100126_trajectories: ROS 2 trajectory generation examples.
+
+  Copyright (c) 2018, 2021 Walter Fetter Lages <w.fetter@ieee.org>
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+
+    You can also obtain a copy of the GNU General Public License
+    at <http://www.gnu.org/licenses>.
+
+-->
+
+<launch>
+	<!-- <arg name="poseonly" default="false"/> -->
+
+	<node name="trajectory_publisher" pkg="trajectory_generator" exec="pose_trajectory_publisher"/>
+  <node pkg="tf2_ros" exec="static_transform_publisher" name="world_origin_publisher" args="--frame-id map --child-frame-id world"/>
+	<!-- <node unless="$(var poseonly)" name="pose2tf" pkg="trajectory_conversions" exec="pose_stamped2tf" args="trajectory"/> -->
+	<node name="rviz" pkg="rviz2" exec="rviz2" args="-d $(find-pkg-share trajectory_generator)/config/display.rviz -f world"/>
+</launch>

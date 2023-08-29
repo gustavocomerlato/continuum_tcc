@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<robot name="continuum_robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:property name="M_PI" value="3.1415926535897931"/>
+
+<xacro:include filename="$(find continuum_description)/urdf/Section0.urdf.xacro" />
+<xacro:include filename="$(find continuum_description)/urdf/Section1.urdf.xacro" />
+<xacro:include filename="$(find continuum_description)/urdf/Section2.urdf.xacro" />
+<link name="world"/>
+<joint name="fixed" type="fixed">
+	<parent link="world"/>
+	<child link="originLink"/>
+</joint>
+
+<link name="originLink"/>
+
+<joint name="baseJoint" type="fixed">
+	<parent link="originLink"/>
+	<child link="S0B" />
+	<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+</joint>
+
+<xacro:Section0 name="Section0"/>
+
+<joint name="JS0S1" type="fixed">
+	<parent link="S0E"/>
+	<child link="S1B" />
+	<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.5235987755982988" />
+</joint>
+
+<xacro:Section1 name="Section1"/>
+
+<joint name="JS1S2" type="fixed">
+	<parent link="S1E"/>
+	<child link="S2B" />
+	<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.7853981633974483" />
+</joint>
+
+<xacro:Section2 name="Section2"/>
+
+
+<joint name="endJoint" type="fixed">
+	<parent link="S2E"/>
+	<child link="endLink" />
+	<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+</joint>
+
+<link name="endLink">
+</link>
+</robot>

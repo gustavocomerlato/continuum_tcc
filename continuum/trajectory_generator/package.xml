@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>trajectory_generator</name>
+  <version>2.1.0</version>
+  <description>Trajectory generator based on the packaged provided by Professor Walter Lages</description>
+  <maintainer email="gustavo.comerlato@ufrgs.br">Gustavo Comerlato Rodrigues</maintainer>
+  <license>GPL-3.0-only</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <depend>rclcpp</depend>
+  <depend>tf2_kdl</depend>
+  <depend>geometry_msgs</depend>
+  <depend>trajectory_msgs</depend>
+  <depend>orocos_kdl</depend>
+  
+  <!-- <exec_depend>trajectory_conversions</exec_depend> -->
+
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>

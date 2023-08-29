@@ -1,0 +1,14 @@
+<launch>
+	<arg name="use_gui" default="false"/>
+
+	<node if="$(var use_gui)" name="joint_state_publisher" pkg="joint_state_publisher_gui" exec="joint_state_publisher_gui">
+		<param name="rate" value="250"/>
+	</node>
+
+	<include file="$(find-pkg-share continuum_description)/launch/continuum_robot.launch.xml">
+	</include>
+	
+	<node pkg="tf2_ros" exec="static_transform_publisher" name="continuum_origin_publisher" args="--frame-id world --child-frame-id originLink" />
+
+	<node name="rviz" pkg="rviz2" exec="rviz2" args="-d $(find-pkg-share continuum_description)/config/display.rviz"/>
+</launch>

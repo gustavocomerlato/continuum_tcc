@@ -1,0 +1,168 @@
+<?xml version="1.0"?>
+
+<robot name="continuum_robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:macro name="Section0" params="name">
+
+    <xacro:property name="vert_len" value="0.004" />
+    <xacro:property name="vert_rad" value="0.04" />
+    <xacro:property name="link_len" value="0.03" />
+    <xacro:property name="cyl_radius" value="0.004" />
+    <xacro:property name="link_mass" value="0.11762122895040185" />
+    <xacro:property name="link_Ixx" value="9.292077087081745e-06" />
+    <xacro:property name="link_Iyy" value="9.292077087081745e-06" />
+    <xacro:property name="link_Izz" value="9.409698316032147e-07" />
+    <xacro:property name="disk_mass" value="1.568283052672025" />
+    <xacro:property name="disk_Ixx" value="0.0006294042651390396" />
+    <xacro:property name="disk_Iyy" value="0.0006294042651390396" />
+    <xacro:property name="disk_Izz" value="0.0012546264421376201" />
+
+        <link name="S0B">
+
+    	    <visual>
+    		    <origin rpy="0 0 0" xyz="0 0 0 "/>
+    		    <geometry>
+    			    <cylinder length="${vert_len}" radius="${vert_rad}"/>
+    		    </geometry>
+    	    	<material name="Transparent">
+    		    	<color rgba="0.5 0.5 0.5 0.5"/>
+    	    	</material>
+        	</visual>
+
+        </link>
+
+        <joint name="S0JT_in" type="continuous">
+    	    <parent link="S0B"/>
+    	    <child link="S0L0" />
+    	    <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+            <axis xyz="0 0 1"/>
+        </joint>
+
+
+        <link name="S0L0">
+    	    <visual>
+    		    <origin rpy="0 0 0" xyz="0 0 0.0075"/>
+    		    <geometry>
+    			    <cylinder length="0.015" radius="${cyl_radius}"/>
+    		    </geometry>
+    		    <material name="Black">
+    		    	<color rgba="1 1 1 1"/>
+    	    	</material>
+        	</visual>
+        </link>
+
+        <joint name="S0D0J" type="fixed">
+    	    <axis xyz="0 0 1"/>
+    	    <parent link="S0L0"/>
+    	    <child link="S0D0" />
+        	<origin rpy="0 0 0" xyz="0 0 0"/>
+        </joint>
+
+        <link name="S0D0">
+    	    <visual>
+    		    <origin rpy="0 0 0" xyz="0 0 0"/>
+    		    <geometry>
+    			    <cylinder length="${vert_len}" radius="${vert_rad}"/>
+    		    </geometry>
+    		    <material name="Red">
+    		    	<color rgba="1 0 0 1"/>
+    	    	</material>
+        	</visual>
+        </link>
+
+
+        <joint name="S0J0" type="revolute">
+    	    <parent link="S0L0"/>
+    	    <child link="S0L1"/>
+    	    <origin rpy="0 0 0" xyz="0 0 0.015"/>
+            <limit lower="-0.5235987755982988" upper="0.5235987755982988" velocity="100.0" effort="100.0"/>
+    	    <axis xyz="0 1 0"/>
+        </joint>
+
+
+
+
+        <link name="S0L1">
+    	    <visual>
+    		    <origin rpy="0 0 0" xyz="0 0 0.015"/>
+    		    <geometry>
+    			    <cylinder length="0.03" radius="${cyl_radius}"/>
+    		    </geometry>
+    		    <material name="Black">
+    		    	<color rgba="1 1 1 1"/>
+    	    	</material>
+        	</visual>
+        </link>
+
+
+        <joint name="S0D1J" type="fixed">
+    	    <axis xyz="0 0 1"/>
+    	    <parent link="S0L1"/>
+    	    <child link="S0D1" />
+        	<origin rpy="0 0 0" xyz="0 0 0.015"/>
+        </joint>
+
+        <link name="S0D1">
+    	    <visual>
+    		    <origin rpy="0 0 0" xyz="0 0 0"/>
+    		    <geometry>
+    			    <cylinder length="${vert_len}" radius="${vert_rad}"/>
+    		    </geometry>
+    		    <material name="Red">
+    		    	<color rgba="1 0 0 1"/>
+    	    	</material>
+        	</visual>
+        </link>
+
+
+        <joint name="S0J1" type="revolute">
+    	    <parent link="S0L1"/>
+    	    <child link="S0L2"/>
+    	    <origin rpy="0 0 0" xyz="0 0 0.03"/>
+            <limit lower="-0.5235987755982988" upper="0.5235987755982988" velocity="100.0" effort="100.0"/>
+    	    <mimic joint="S0J0" />
+    	    <axis xyz="0 1 0"/>
+        </joint>
+
+
+
+
+        <link name="S0L2">
+    	    <visual>
+    		    <origin rpy="0 0 0" xyz="0 0 0.0075"/>
+    		    <geometry>
+    			    <cylinder length="0.015" radius="${cyl_radius}"/>
+    		    </geometry>
+    		    <material name="Black">
+    		    	<color rgba="1 1 1 1"/>
+    	    	</material>
+        	</visual>
+        </link>
+
+
+        <joint name="S0JT_out" type="continuous">
+    	    <parent link="S0L2"/>
+    	    <child link="S0E" />
+    	    <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 ${link_len/2}" />
+    	    <axis xyz="0 0 1"/>
+    	    <mimic joint="S0JT_in" multiplier="-1" />
+        </joint>
+
+
+        <link name="S0E">
+
+    	    <visual>
+    		    <origin rpy="0 0 0" xyz="0 0 0"/>
+    		    <geometry>
+    			    <cylinder length="${vert_len}" radius="${vert_rad}"/>
+    		    </geometry>
+    		    <material name="Red">
+    		    	<color rgba="1 0 0 1"/>
+    	    	</material>
+        	</visual>
+        </link>
+
+
+    </xacro:macro>
+
+</robot>

@@ -1,0 +1,10 @@
+cable_untangler:
+  ros__parameters:
+    num_sec: 3
+
+continuum_robot:
+  ros__parameters:
+    num_sec: 3
+    alpha: [0.0, 0.5235987755982988, 1.308996938995747]
+    num_joints: [2, 4, 5]
+    b: [0.015, 0.015, 0.015]

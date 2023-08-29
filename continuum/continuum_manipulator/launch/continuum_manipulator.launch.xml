@@ -1,0 +1,17 @@
+<launch>
+	<!-- Nodos do programa em si - Untangler, Sections, DeMux, Continuum_Robot-->
+	<include file="$(find-pkg-share continuum_manipulator)/launch/continuum_sections.launch.xml"/>
+
+	<!--node name="joint_demuxer" pkg="continuum_manipulator" exec="muxer">
+		<param from="$(find-pkg-share continuum_description)/config/continuum.yaml"/>
+	</node-->
+	<node name="continuum_robot" pkg="continuum_manipulator" exec="continuum_robot">
+		<param from="$(find-pkg-share continuum_description)/config/continuum.yaml"/>
+	</node>
+	<node name="cable_untangler" pkg="continuum_manipulator" exec="cable_untangler">
+		<param from="$(find-pkg-share continuum_description)/config/continuum.yaml"/>
+	</node>
+
+	<include file="$(find-pkg-share continuum_description)/launch/display.launch.xml"/>
+
+</launch>

@@ -1,0 +1,8 @@
+<launch>
+<node name="continuum_section_1" pkg="continuum_manipulator" exec="continuum_section">
+	<arg name="num_sec_" value="1"\>
+</node>
+<node name="continuum_section_2" pkg="continuum_manipulator" exec="continuum_section">
+	<arg name="num_sec_" value="2"\>
+</node>
+</launch>

@@ -1,0 +1,11 @@
+continuum_section_2:
+  ros__parameters:
+    num_sec: 2
+    num_joints: 4
+    num_cables: 12
+    num_sec_cables: 8
+    num_joints_urdf: 6
+    a: [0.035, 0.03]
+    b: 0.015
+    alpha: [0.5235987755982988, 1.308996938995747]
+    preload: 0.0
